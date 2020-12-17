@@ -24,7 +24,7 @@ RUN apt install -y \
 		sed -i '/pattern="PDF"/d' /etc/ImageMagick-6/policy.xml
 
 WORKDIR /usr/src
-RUN git clone --depth 1 -b master https://github.com/therion/therion.git
+RUN git clone --depth 1 -b 5.5.4 https://github.com/therion/therion.git
 
 WORKDIR /usr/src/therion
 RUN	make config-debian && make install

@@ -24,6 +24,8 @@ This action build compile a therion based project.
 
 ## Example usage
 
-uses: actions/therion-container@5.5.4
-with:
-  thconfig: 'myproject.thconfig'
+    steps:
+      - name: Build with therion
+        uses: actions/therion-container@5.5.4
+        with:
+          thconfig: 'myproject.thconfig'

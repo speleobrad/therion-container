@@ -13,7 +13,8 @@ RUN apt -qq update ; \
 
 
 FROM root AS compiling
-RUN apt install -y \
+RUN apt -qq update ; \
+	apt install -y \
 		git \
 		libproj-dev \
 		libvtk7-dev \

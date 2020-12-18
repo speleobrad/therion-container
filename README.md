@@ -9,10 +9,10 @@ Usage
 
 	docker run --rm -it -v "C:\mytherionproject:/opt" matteopic/therion:5.5.3 /opt/project.
 	
-docker action
--------------
+GitHub Docker Action
+--------------------
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+This action build compile a therion based project.
 
 ## Inputs
 
@@ -22,6 +22,6 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 
 ## Example usage
 
-uses: actions/therion-container@v1
+uses: actions/therion-container@5.5.4
 with:
   thconfig: 'myproject.thconfig'

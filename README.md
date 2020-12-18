@@ -35,4 +35,4 @@ Use following step snippet for the `.github/workflows/main.yml` file.
 For a full working example look at this project  [buco del bagno](https://github.com/matteopic/buco-del-bagno/blob/master/.github/workflows/main.yml),
 when a push occurs the project is compiled and a release is created, then the resulting pdf and lox files are included.
 
-[Here the result](https://github.com/matteopic/buco-del-bagno/releases/tag/untagged-b42c092aaf30b7eaaebd)
+[Here the result](https://github.com/matteopic/buco-del-bagno/releases/tag/1.0.0)

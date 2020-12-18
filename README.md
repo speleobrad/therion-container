@@ -9,7 +9,7 @@ Usage
 
 The container build is available on [Docker Hub](https://hub.docker.com/repository/docker/matteopic/therion)
 
-	docker run --rm -it -v "C:\mytherionproject:/opt" matteopic/therion:5.5.4 /opt/project.thconfig
+	docker run --rm -it -v "C:\mytherionproject:/opt" --workdir /opt matteopic/therion:5.5.4 project.thconfig
 
 GitHub Docker Action
 --------------------

@@ -35,8 +35,8 @@ RUN	make config-debian && make install
 FROM root
 
 COPY --from=compiling /usr/local/bin/therion /usr/local/bin
-ENTRYPOINT /usr/local/bin/therion
 RUN apt remove -y --purge python3 ruby && \
     apt autoremove -y --purge && \
     rm -rf /var/lib/apt/lists/*
-WORKDIR /opt
+ENTRYPOINT ["/usr/local/bin/therion"]
+

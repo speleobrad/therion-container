@@ -1,12 +1,13 @@
 # action.yml
 name: 'Compile with Therion'
 description: 'Compile a therion based project'
+
 inputs:
   thconfig:  # id of input
     description: 'thconfig file path'
     required: true
 runs:
   using: 'docker'
-  image: 'docker://matteopic/therion:5.5.4'
+  image: 'docker://matteopic/therion:5.5.5'
   args:
     - ${{ inputs.thconfig }}

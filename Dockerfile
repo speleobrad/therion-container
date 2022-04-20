@@ -5,38 +5,32 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 
 RUN apt -qq update ; \
-    apt install -y  \
-		libproj15 \
+    apt install -y --no-install-recommends \
 		texlive-binaries \
-		texlive-metapost
-
-
-
-FROM root AS compiling
-RUN apt -qq update ; \
-	apt install -y \
-		git \
-		libproj-dev \
-		libvtk7-dev \
-		libwxgtk3.0-gtk3-dev \
+		texlive-metapost \
+		libproj15 \
 		ghostscript \
 		imagemagick \
 		survex && \
-		sed -i '/pattern="PDF"/d' /etc/ImageMagick-6/policy.xml
+	sed -i '/pattern="PDF"/d' /etc/ImageMagick-6/policy.xml
 
+FROM root AS compiling
 WORKDIR /usr/src
-RUN git clone --depth 1 -b v5.5.7 https://github.com/therion/therion.git
-
-WORKDIR /usr/src/therion
-RUN	make config-debian && make install
-
-
+RUN apt install -y --no-install-recommends \
+		ca-certificates \
+		python3 \
+		g++ \
+		git \
+		make pkg-config \
+		tcl \
+		libproj-dev && \
+	git clone --depth 1 -b v6.0.6 https://github.com/therion/therion.git && \
+	cd /usr/src/therion && \
+    sed -i 's/^LOCHEXE/##LOCHEXE/' /usr/src/therion/Makefile && \
+    make config-debian && \
+    make ./therion
 
 FROM root
-
-COPY --from=compiling /usr/local/bin/therion /usr/local/bin
-RUN apt remove -y --purge python3 ruby && \
-    apt autoremove -y --purge && \
-    rm -rf /var/lib/apt/lists/*
+COPY --from=compiling /usr/src/therion/therion /usr/local/bin
+RUN rm -rf /var/lib/apt/lists/*
 ENTRYPOINT ["/usr/local/bin/therion"]
-

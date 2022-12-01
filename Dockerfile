@@ -24,7 +24,7 @@ RUN apt install -y --no-install-recommends \
 		make pkg-config \
 		tcl \
 		libproj-dev && \
-	git clone --depth 1 -b v6.0.6 https://github.com/therion/therion.git && \
+	git clone --depth 1 -b v6.1.3 https://github.com/therion/therion.git && \
 	cd /usr/src/therion && \
     sed -i 's/^LOCHEXE/##LOCHEXE/' /usr/src/therion/Makefile && \
     make config-debian && \

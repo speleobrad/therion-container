@@ -1,0 +1,3 @@
+[submodule "therion"]
+	path = therion
+	url = https://github.com/therion/therion.git

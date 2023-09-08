@@ -4,7 +4,7 @@ FROM ubuntu:20.04 AS root
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 
-RUN apt -qq update ; \
+RUN apt update ; \
     apt install -y --no-install-recommends \
 		texlive-binaries \
 		texlive-metapost \
@@ -12,23 +12,27 @@ RUN apt -qq update ; \
 		ghostscript \
 		imagemagick \
 		survex && \
-	sed -i '/pattern="PDF"/d' /etc/ImageMagick-6/policy.xml
+	sed -i '/pattern="PDF"/d' /etc/ImageMagick-6/policy.xml && \
+	rm -rf /var/lib/apt/lists/*
 
 FROM root AS compiling
-WORKDIR /usr/src
-RUN apt install -y --no-install-recommends \
+RUN apt update && \
+    apt install -y --no-install-recommends \
 		ca-certificates \
 		python3 \
 		g++ \
-		git \
 		make pkg-config \
 		tcl \
-		libproj-dev && \
-	git clone --depth 1 -b v6.1.7 https://github.com/therion/therion.git && \
-	cd /usr/src/therion && \
-    sed -i 's/^LOCHEXE/##LOCHEXE/' /usr/src/therion/Makefile && \
+		libproj-dev \
+		libfmt-dev && \
+	rm -rf /var/lib/apt/lists/*
+
+COPY ./therion /usr/src/therion/
+WORKDIR /usr/src/therion/
+RUN sed -i 's/^LOCHEXE/##LOCHEXE/' /usr/src/therion/Makefile && \
     make config-debian && \
     make ./therion
+
 
 FROM root
 COPY --from=compiling /usr/src/therion/therion /usr/local/bin

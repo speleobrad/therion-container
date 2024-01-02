@@ -1,0 +1,10 @@
+services:
+
+  therion:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    entrypoint: /usr/bin/check-image.sh
+    volumes:
+      - ./check-image.sh:/usr/bin/check-image.sh
+      - ./therion/samples:/samples

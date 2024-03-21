@@ -9,7 +9,7 @@ Run with Docker
 The container build is available on [Docker Hub](https://hub.docker.com/repository/docker/matteopic/therion).
 To use it, just mount your project dir in any container path (the example below uses `/opt`) and pass the `.thconfig` file as usual.
 
-	docker run --rm -it -v "C:\mytherionproject:/opt" --workdir /opt matteopic/therion:6.2.0 project.thconfig
+	docker run --rm -it -v "C:\mytherionproject:/opt" --workdir /opt matteopic/therion:6.2.1 project.thconfig
 
 Run with GitHub
 ---------------

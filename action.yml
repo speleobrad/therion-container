@@ -11,3 +11,7 @@ runs:
   image: 'docker://matteopic/therion:6.2.1'
   args:
     - ${{ inputs.thconfig }}
+
+branding:
+  icon: 'map'
+  color: 'black'

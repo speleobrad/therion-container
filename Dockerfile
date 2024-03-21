@@ -37,4 +37,6 @@ RUN sed -i 's/^LOCHEXE/##LOCHEXE/' /usr/src/therion/Makefile && \
 FROM root
 COPY --from=compiling /usr/src/therion/therion /usr/local/bin
 RUN rm -rf /var/lib/apt/lists/*
+RUN useradd therion
 ENTRYPOINT ["/usr/local/bin/therion"]
+USER therion

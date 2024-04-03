@@ -3,6 +3,13 @@ Therion Container
 
 This is the docker container version for [therion](https://github.com/therion/therion) project.
 
+Init submodules
+---------------
+After you have cloned this repository you need to launch following commands
+
+  git submodule --init
+  git submodule update
+
 Run with Docker
 ---------------
 

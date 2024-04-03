@@ -16,7 +16,7 @@ Run with Docker
 The container build is available on [Docker Hub](https://hub.docker.com/repository/docker/matteopic/therion).
 To use it, just mount your project dir in any container path (the example below uses `/opt`) and pass the `.thconfig` file as usual.
 
-	docker run --rm -it -v "C:\mytherionproject:/opt" --workdir /opt matteopic/therion:6.2.1 project.thconfig
+	docker run --rm -it -v "C:\mytherionproject:/opt" --workdir /opt matteopic/therion:6.2.1-slavic project.thconfig
 
 Run with GitHub
 ---------------
@@ -35,11 +35,11 @@ Use following step snippet for the `.github/workflows/main.yml` file.
 
     steps:
       - name: Build with therion
-        uses: matteopic/therion-container@6.2.0
+        uses: matteopic/therion-container@6.2.1-slavic
         with:
           thconfig: 'myproject.thconfig'
 
-For a full working example look at this project  [buco del bagno](https://github.com/matteopic/buco-del-bagno/blob/master/.github/workflows/main.yml),
+For a full working example look at this project  [buco del bagno](https://github.com/matteopic/buco-del-bagno/blob/master/.github/workflows/build-site.yml),
 when a push occurs the project is compiled and a release is created, then the resulting pdf and lox files are included.
 
 [Here the result](https://github.com/matteopic/buco-del-bagno/releases/tag/1.0.0)

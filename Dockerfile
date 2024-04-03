@@ -8,6 +8,8 @@ RUN apt update ; \
     apt install -y --no-install-recommends \
 		texlive-binaries \
 		texlive-metapost \
+		texlive-lang-czechslovak \
+        texlive-lang-cyrillic \
 		libproj15 \
 		ghostscript \
 		imagemagick \
@@ -21,7 +23,8 @@ RUN apt update && \
 		ca-certificates \
 		python3 \
 		g++ \
-		make pkg-config \
+		make \
+		pkg-config \
 		tcl \
 		libproj-dev \
 		libfmt-dev && \

@@ -4,31 +4,31 @@ FROM ubuntu:20.04 AS root
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 
-RUN apt update ; \
-    apt install -y --no-install-recommends \
-		texlive-binaries \
-		texlive-metapost \
-		texlive-lang-czechslovak \
+RUN \
+    apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+        texlive-binaries \
+        texlive-metapost \
+        texlive-lang-czechslovak \
         texlive-lang-cyrillic \
-		libproj15 \
-		ghostscript \
-		imagemagick \
-		survex && \
-	sed -i '/pattern="PDF"/d' /etc/ImageMagick-6/policy.xml && \
-	rm -rf /var/lib/apt/lists/*
+        libproj15 \
+        ghostscript \
+        imagemagick \
+        survex && \
+    sed -i '/pattern="PDF"/d' /etc/ImageMagick-6/policy.xml
 
 FROM root AS compiling
-RUN apt update && \
-    apt install -y --no-install-recommends \
-		ca-certificates \
-		python3 \
-		g++ \
-		make \
-		pkg-config \
-		tcl \
-		libproj-dev \
-		libfmt-dev && \
-	rm -rf /var/lib/apt/lists/*
+RUN \
+    apt-get install -y --no-install-recommends \
+        ca-certificates \
+        python3 \
+        g++ \
+        make \
+        pkg-config \
+        tcl \
+        libproj-dev \
+        libfmt-dev
 
 COPY ./therion /usr/src/therion/
 WORKDIR /usr/src/therion/
@@ -39,7 +39,8 @@ RUN sed -i 's/^LOCHEXE/##LOCHEXE/' /usr/src/therion/Makefile && \
 
 FROM root
 COPY --from=compiling /usr/src/therion/therion /usr/local/bin
-RUN rm -rf /var/lib/apt/lists/*
-RUN useradd therion
+RUN \
+    apt-get clean && \
+    useradd therion
 ENTRYPOINT ["/usr/local/bin/therion"]
 USER therion

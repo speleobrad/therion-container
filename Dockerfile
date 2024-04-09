@@ -40,7 +40,5 @@ RUN sed -i 's/^LOCHEXE/##LOCHEXE/' /usr/src/therion/Makefile && \
 FROM root
 COPY --from=compiling /usr/src/therion/therion /usr/local/bin
 RUN \
-    apt-get clean && \
-    useradd therion
+    apt-get clean
 ENTRYPOINT ["/usr/local/bin/therion"]
-USER therion

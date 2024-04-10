@@ -54,6 +54,6 @@ The following inputs can be used as `step.with` keys:
 
 **Required** The path of thconfig file relative to the repository.
 
-For a full working example look at [grotta del fiume](https://matteopic.github.io/grotta-del-fiume/) project.
+For a full working example look  at [grotta del fiume](https://matteopic.github.io/grotta-del-fiume/) project.
 When a push occurs therion project is compiled and resulting PDF, LOX files are published in a github hosted website.
 [Here the github workflow](https://github.com/matteopic/grotta-del-fiume/blob/master/.github/workflows/build-site.yml)

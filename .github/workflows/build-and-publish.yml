@@ -42,8 +42,8 @@ jobs:
           context: .
           # Note: tags has to be all lower-case
           tags: |
-            speleobrad/therion:latest 
-            speleobrad/therion:${{ env.RELEASE_VERSION }}
+            ghcr.io/${{ github.actor }}/therion:latest
+            ghcr.io/${{ github.actor }}/therion:${{ env.RELEASE_VERSION }}
           # build on feature branches, push only on main branch
           push: true
 

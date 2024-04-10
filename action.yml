@@ -8,7 +8,7 @@ inputs:
     required: true
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/${{ github.actor }}/therion:${{ env.RELEASE_VERSION }}'
+  image: 'docker://ghcr.io/speleobrad/therion:6.2.1'
   args:
     - ${{ inputs.thconfig }}
 

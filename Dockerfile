@@ -16,10 +16,17 @@ RUN \
         ghostscript \
         imagemagick \
         survex && \
+    apt-get clean && \
+    rm -rf \
+        /var/lib/apt/lists/* \
+        /usr/share/doc/* \
+        /usr/share/info/* \
+        /var/cache/debconf/* && \
     sed -i '/pattern="PDF"/d' /etc/ImageMagick-6/policy.xml
 
 FROM root AS compiling
 RUN \
+    apt-get update && \
     apt-get install -y --no-install-recommends \
         ca-certificates \
         python3 \
@@ -28,7 +35,13 @@ RUN \
         pkg-config \
         tcl \
         libproj-dev \
-        libfmt-dev
+        libfmt-dev && \
+        apt-get clean && \
+        rm -rf \
+            /var/lib/apt/lists/* \
+            /usr/share/doc/* \
+            /usr/share/info/* \
+            /var/cache/debconf/*
 
 COPY ./therion /usr/src/therion/
 WORKDIR /usr/src/therion/

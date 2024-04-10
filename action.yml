@@ -1,6 +1,6 @@
 # action.yml
-name: 'Compile with Therion'
-description: 'Compile a therion based project'
+name: 'Build Therion maps'
+description: 'Build maps from therion based project - fork of matteopic/therion-container'
 
 inputs:
   thconfig:  # id of input
@@ -8,7 +8,7 @@ inputs:
     required: true
 runs:
   using: 'docker'
-  image: 'docker://matteopic/therion:6.2.1-slavic'
+  image: 'docker://speleobrad/therion:${{ env.RELEASE_VERSION }}'
   args:
     - ${{ inputs.thconfig }}
 
